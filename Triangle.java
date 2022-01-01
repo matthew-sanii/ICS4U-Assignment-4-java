@@ -37,8 +37,7 @@ final class Triangle {
       triangleInfo.getHeights();
       triangleInfo.getInscribed();
       triangleInfo.getCircumcircle();
-    }
-    else {
+    } else {
       System.out.println(".");
     }
   }

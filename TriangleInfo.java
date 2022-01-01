@@ -1,16 +1,48 @@
 public class TriangleInfo {
 
+    /**
+    * The empty double for the first triangle side length.
+    */
     private double lengthA;
 
+    /**
+    * The empty double for the second triangle side length.
+    */
     private double lengthB;
 
+    /**
+    * The empty double for the third triangle side length.
+    */
     private double lengthC;
 
+    /**
+    * The empty double for the triangle area.
+    */
     private double triangleArea;
 
+    /**
+    * The empty double for the triangle's semiperimeter.
+    */
     private double semiPerimeter;
 
-    public boolean checkTriangle(final double sideA, final double sideB,
+    /**
+    * The rounding used for the angles of the triangle.
+    */
+    private double angleRounding = 10.0;
+
+    /**
+    * The rounding used for the calculations (area, perimeter, circumcircle
+    * area).
+    */
+    private double unitRounding = 100.0;
+
+    private double pi = 3.14;
+
+    private double angles = 180;
+
+    private double radiusRounding = 1000.0;
+
+    protected boolean checkTriangle(final double sideA, final double sideB,
       final double sideC) {
         if ((sideA + sideB) >= sideC && (sideB + sideC) >= sideA
             && (sideA + sideC) >= sideB) {
@@ -29,7 +61,7 @@ public class TriangleInfo {
       double area = semiPerimeter * (semiPerimeter - lengthA)
         * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
       area = Math.pow(area, 0.5);
-      triangleArea = Math.round(area * 100.0) / 100.0;
+      triangleArea = Math.round(area * unitRounding) / unitRounding;
       System.out.println(triangleArea);
     }
 
@@ -46,12 +78,12 @@ public class TriangleInfo {
         / (2 * lengthB * lengthC));
       double angleB = ((lengthASquared + lengthCSquared - lengthBSquared)
         / (2 * lengthA * lengthC));
-      angleA = (Math.acos(angleA)) * (180 / 3.14);
-      angleA = Math.round(angleA * 10.0) / 10.0;
-      angleB = (Math.acos(angleB)) * (180 / 3.14);
-      angleB = Math.round(angleB * 10.0) / 10.0;
-      double angleC = 180 - angleA - angleB;
-      angleC = Math.round(angleC * 10.0) / 10.0;
+      angleA = (Math.acos(angleA)) * (angles / pi);
+      angleA = Math.round(angleA * angleRounding) / angleRounding;
+      angleB = (Math.acos(angleB)) * (angles / pi);
+      angleB = Math.round(angleB * angleRounding) / angleRounding;
+      double angleC = angles - angleA - angleB;
+      angleC = Math.round(angleC * angleRounding) / angleRounding;
       System.out.println(angleA);
       System.out.println(angleB);
       System.out.println(angleC);
@@ -96,28 +128,38 @@ public class TriangleInfo {
         return type;
       }
 
+    /**
+    * The method to get the three heights of the triangle.
+    */
     public void getHeights() {
       final double heightA = Math.round((2 * (triangleArea / lengthA))
-        * 100.0) / 100.0;
+        * unitRounding) / unitRounding;
       final double heightB = Math.round((2 * (triangleArea / lengthB))
-        * 100.0) / 100.0;
+        * unitRounding) / unitRounding;
       final double heightC = Math.round((2 * (triangleArea / lengthC))
-        * 100.0) / 100.0;
+        * unitRounding) / unitRounding;
       System.out.println(heightA);
       System.out.println(heightB);
       System.out.println(heightC);
     }
 
+    /**
+    * The method to get the inscribed circle's radius.
+    */
     public void getInscribed() {
       final double inscribedCircleRadius = Math.round((triangleArea
-        / semiPerimeter) * 1000.0) / 1000.0;
+        / semiPerimeter) * radiusRounding) / radiusRounding;
       System.out.println(inscribedCircleRadius);
     }
 
+    /**
+    * The method to get the area of the circumcircle.
+    */
     public void getCircumcircle() {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
         / (4 * triangleArea);
-      double circumcircleArea = 3.14 * Math.pow(circumcircleRadius, 2);
-      System.out.println(Math.round(circumcircleArea * 100.0) / 100.0);
+      double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
+      System.out.println(Math.round(circumcircleArea *
+        unitRounding) / unitRounding);
     }
 }
