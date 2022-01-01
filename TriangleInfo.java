@@ -51,4 +51,38 @@ public class TriangleInfo {
       System.out.println(angleB);
       System.out.println(angleC);
     }
+
+    public String getType() {
+      double smallerLengths;
+      final double lengthASquared = Math.pow(lengthA, 2);
+      final double lengthBSquared = Math.pow(lengthB, 2);
+      final double lengthCSquared = Math.pow(lengthC, 2);
+      if (lengthA < lengthB && lengthC < lengthB) {
+        smallerLengths = lengthASquared + lengthCSquared;
+      }
+      else if (lengthB < lengthA && lengthC < lengthA) {
+        smallerLengths = lengthBSquared + lengthCSquared;
+      }
+      else if (lengthA < lengthC && lengthB < lengthC) {
+        smallerLengths = lengthASquared + lengthBSquared;
+      }
+      else {
+
+      }
+    }
+
+    public String giveType(final double combinedLength,
+      final double largeLength) {
+        String type;
+        if (combinedLength > largeLength) {
+          type = "Obtuse";
+        }
+        else if (combinedLength < largeLength) {
+          type = "Acute";
+        }
+        else if (combinedLength == largeLength) {
+          type = "Right";
+        }
+        return type;
+      }
 }
