@@ -36,97 +36,118 @@ public class TriangleInfo {
     */
     private double unitRounding = 100.0;
 
+    /**
+    * The pi value.
+    */
     private double pi = 3.14;
 
+    /**
+    * The value used to turn radians into degrees (acos gives radians as answer).
+    */
     private double angles = 180;
 
+    /**
+    * Value used for rounding radius for inscribed circle.
+    */
     private double radiusRounding = 1000.0;
 
+    /**
+    *
+    */
     protected boolean checkTriangle(final double sideA, final double sideB,
       final double sideC) {
         if ((sideA + sideB) >= sideC && (sideB + sideC) >= sideA
             && (sideA + sideC) >= sideB) {
-          lengthA = sideA;
-          lengthB = sideB;
-          lengthC = sideC;
-          return true;
+            lengthA = sideA;
+            lengthB = sideB;
+            lengthC = sideC;
+            return true;
+        } else {
+            return false;
         }
-        else {
-          return false;
-        }
-      }
+    }
 
+    /**
+    *
+    */
     public void getArea() {
-      semiPerimeter = (lengthA + lengthB + lengthC) / 2;
-      double area = semiPerimeter * (semiPerimeter - lengthA)
-        * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
-      area = Math.pow(area, 0.5);
-      triangleArea = Math.round(area * unitRounding) / unitRounding;
-      System.out.println(triangleArea);
+        semiPerimeter = (lengthA + lengthB + lengthC) / 2;
+        double area = semiPerimeter * (semiPerimeter - lengthA)
+            * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
+        area = Math.pow(area, 0.5);
+        triangleArea = Math.round(area * unitRounding) / unitRounding;
+        System.out.println(triangleArea);
     }
 
+    /**
+    *
+    */
     public void getPerimeter() {
-      final double perimeter = lengthA + lengthB + lengthC;
-      System.out.println(perimeter);
+        final double perimeter = lengthA + lengthB + lengthC;
+        System.out.println(perimeter);
     }
 
+    /**
+    *
+    */
     public void getAngles() {
-      final double lengthASquared = Math.pow(lengthA, 2);
-      final double lengthBSquared = Math.pow(lengthB, 2);
-      final double lengthCSquared = Math.pow(lengthC, 2);
-      double angleA = ((lengthBSquared + lengthCSquared - lengthASquared)
-        / (2 * lengthB * lengthC));
-      double angleB = ((lengthASquared + lengthCSquared - lengthBSquared)
-        / (2 * lengthA * lengthC));
-      angleA = (Math.acos(angleA)) * (angles / pi);
-      angleA = Math.round(angleA * angleRounding) / angleRounding;
-      angleB = (Math.acos(angleB)) * (angles / pi);
-      angleB = Math.round(angleB * angleRounding) / angleRounding;
-      double angleC = angles - angleA - angleB;
-      angleC = Math.round(angleC * angleRounding) / angleRounding;
-      System.out.println(angleA);
-      System.out.println(angleB);
-      System.out.println(angleC);
+        final double lengthASquared = Math.pow(lengthA, 2);
+        final double lengthBSquared = Math.pow(lengthB, 2);
+        final double lengthCSquared = Math.pow(lengthC, 2);
+        double angleA = ((lengthBSquared + lengthCSquared - lengthASquared)
+          / (2 * lengthB * lengthC));
+        double angleB = ((lengthASquared + lengthCSquared - lengthBSquared)
+          / (2 * lengthA * lengthC));
+        angleA = (Math.acos(angleA)) * (angles / pi);
+        angleA = Math.round(angleA * angleRounding) / angleRounding;
+        angleB = (Math.acos(angleB)) * (angles / pi);
+        angleB = Math.round(angleB * angleRounding) / angleRounding;
+        double angleC = angles - angleA - angleB;
+        angleC = Math.round(angleC * angleRounding) / angleRounding;
+        System.out.println(angleA);
+        System.out.println(angleB);
+        System.out.println(angleC);
     }
 
+    /**
+    *
+    */
     public String getType() {
-      double smallerLengths;
-      String triangleType;
-      final double lengthASquared = Math.pow(lengthA, 2);
-      final double lengthBSquared = Math.pow(lengthB, 2);
-      final double lengthCSquared = Math.pow(lengthC, 2);
-      if (lengthA < lengthB && lengthC < lengthB) {
-        smallerLengths = lengthASquared + lengthCSquared;
-        triangleType = giveType(smallerLengths, lengthBSquared);
-      }
-      else if (lengthB < lengthA && lengthC < lengthA) {
-        smallerLengths = lengthBSquared + lengthCSquared;
-        triangleType = giveType(smallerLengths, lengthASquared);
-      }
-      else if (lengthA < lengthC && lengthB < lengthC) {
-        smallerLengths = lengthASquared + lengthBSquared;
-        triangleType = giveType(smallerLengths, lengthCSquared);
-      }
-      else {
-        triangleType = "Equallateral";
-      }
-      return triangleType;
+        double smallerLengths;
+        String triangleType;
+        final double lengthASquared = Math.pow(lengthA, 2);
+        final double lengthBSquared = Math.pow(lengthB, 2);
+        final double lengthCSquared = Math.pow(lengthC, 2);
+        if (lengthA < lengthB && lengthC < lengthB) {
+          smallerLengths = lengthASquared + lengthCSquared;
+          triangleType = giveType(smallerLengths, lengthBSquared);
+        } else if (lengthB < lengthA && lengthC < lengthA) {
+            smallerLengths = lengthBSquared + lengthCSquared;
+            triangleType = giveType(smallerLengths, lengthASquared);
+        } else if (lengthA < lengthC && lengthB < lengthC) {
+            smallerLengths = lengthASquared + lengthBSquared;
+            triangleType = giveType(smallerLengths, lengthCSquared);
+        } else {
+            triangleType = "Equallateral";
+        }
+        return triangleType;
     }
 
+    /**
+    *
+    */
     public String giveType(final double combinedLength,
-      final double largeLength) {
-        String type = "Equallateral";
-        if (combinedLength > largeLength) {
-          type = "Acute";
-        }
-        else if (combinedLength < largeLength) {
-          type = "Obtuse";
-        }
-        else if (combinedLength == largeLength) {
-          type = "Right";
-        }
-        return type;
-      }
+        final double largeLength) {
+          String type = "Equallateral";
+          if (combinedLength > largeLength) {
+              type = "Acute";
+          } else if (combinedLength < largeLength) {
+              type = "Obtuse";
+          } else if (combinedLength == largeLength) {
+              type = "Right";
+          }
+          return type;
+    }
 
     /**
     * The method to get the three heights of the triangle.
