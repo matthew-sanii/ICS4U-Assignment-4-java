@@ -1,19 +1,17 @@
 public class TriangleInfo {
 
     /**
-    * The empty double for the first triangle side length.
+    * The starting constructor
+    *
+    * @param sideA the first side length.
+    * @param sideB the second side length.
+    * @param sideC the third side length.
     */
-    private double lengthA;
-
-    /**
-    * The empty double for the second triangle side length.
-    */
-    private double lengthB;
-
-    /**
-    * The empty double for the third triangle side length.
-    */
-    private double lengthC;
+    public TriangleInfo(final double sideA, final double sideB, final double sideC) {
+      private double lengthA = sideA;
+      private double lengthB = sideB;
+      private double lengthC = sideC;
+    }
 
     /**
     * The empty double for the triangle area.
@@ -65,19 +63,11 @@ public class TriangleInfo {
     /**
     * The method used to check if the triangle lengths given are valid.
     *
-    * @param sideA the first side length.
-    * @param sideB the second side length.
-    * @param sideC the third side length.
-    *
     * @return if triangle is valid.
     */
-    protected boolean checkTriangle(final double sideA, final double sideB,
-      final double sideC) {
-        if ((sideA + sideB) >= sideC && (sideB + sideC) >= sideA
-            && (sideA + sideC) >= sideB) {
-            lengthA = sideA;
-            lengthB = sideB;
-            lengthC = sideC;
+    protected boolean checkTriangle() {
+        if ((lengthA + lengthB) >= lengthC && (lengthB + lengthC) >= lengthA
+            && (lengthA + lengthC) >= lengthB) {
             return true;
         } else {
             return false;
