@@ -29,7 +29,7 @@ public class TriangleInfo {
       double area = semiPerimeter * (semiPerimeter - lengthA)
         * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
       area = Math.pow(area, 0.5);
-      triangleArea = Math.round(area * 10.0) / 10.0;
+      triangleArea = Math.round(area * 100.0) / 100.0;
       System.out.println(triangleArea);
     }
 
@@ -96,7 +96,7 @@ public class TriangleInfo {
         return type;
       }
 
-    public void getHeights(){
+    public void getHeights() {
       final double heightA = Math.round((2 * (triangleArea / lengthA))
         * 100.0) / 100.0;
       final double heightB = Math.round((2 * (triangleArea / lengthB))
@@ -108,8 +108,16 @@ public class TriangleInfo {
       System.out.println(heightC);
     }
 
-    public void getInscribed(){
-      final double inscribedCircleRadius = triangleArea / semiPerimeter;
+    public void getInscribed() {
+      final double inscribedCircleRadius = Math.round((triangleArea
+        / semiPerimeter) * 1000.0) / 1000.0;
       System.out.println(inscribedCircleRadius);
+    }
+
+    public void getCircumcircle() {
+      double circumcircleRadius = (lengthA * lengthB * lengthC)
+        / (4 * triangleArea);
+      double circumcircleArea = 3.14 * Math.pow(circumcircleRadius, 2);
+      System.out.println(Math.round(circumcircleArea * 100.0) / 100.0);
     }
 }
