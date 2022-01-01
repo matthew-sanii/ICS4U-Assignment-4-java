@@ -11,7 +11,7 @@ final class Triangle {
   *
   */
   private Triangle() {
-    throw new IllegalStateException("Cannot be initated.");
+    throw new IllegalStateException("Cannot be initiated.");
   }
 
   /**

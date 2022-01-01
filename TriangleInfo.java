@@ -53,6 +53,16 @@ public class TriangleInfo {
     private final double radiusRounding = 1000.0;
 
     /**
+    * Value used in finding square root.
+    */
+    private final double half = 0.5;
+
+    /**
+    * Value used in finding circumcircle area.
+    */
+    private final double quad = 4;
+
+    /**
     * The method used to check if the triangle lengths given are valid.
     *
     * @param sideA the first side length.
@@ -81,7 +91,7 @@ public class TriangleInfo {
         semiPerimeter = (lengthA + lengthB + lengthC) / 2;
         double area = semiPerimeter * (semiPerimeter - lengthA)
             * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
-        area = Math.pow(area, 0.5);
+        area = Math.pow(area, half);
         triangleArea = Math.round(area * unitRounding) / unitRounding;
         System.out.println(triangleArea);
     }
@@ -192,7 +202,7 @@ public class TriangleInfo {
     */
     public void getCircumcircle() {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
-        / (4 * triangleArea);
+        / (quad * triangleArea);
       double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
       System.out.println(Math.round(circumcircleArea
       * unitRounding) / unitRounding);
