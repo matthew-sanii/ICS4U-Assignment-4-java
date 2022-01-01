@@ -33,6 +33,8 @@ final class Triangle {
       triangleInfo.getArea();
       triangleInfo.getPerimeter();
       triangleInfo.getAngles();
+      System.out.println(triangleInfo.getType());
+      triangleInfo.getHeights();
     }
     else {
       System.out.println(".");

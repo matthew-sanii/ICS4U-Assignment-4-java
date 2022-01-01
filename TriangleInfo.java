@@ -6,6 +6,10 @@ public class TriangleInfo {
 
     private double lengthC;
 
+    private double triangleArea;
+
+    private double semiPerimeter;
+
     public boolean checkTriangle(final double sideA, final double sideB,
       final double sideC) {
         if ((sideA + sideB) >= sideC && (sideB + sideC) >= sideA
@@ -21,11 +25,12 @@ public class TriangleInfo {
       }
 
     public void getArea() {
-      final double semiPerm = (lengthA + lengthB + lengthC) / 2;
-      double area = semiPerm * (semiPerm - lengthA)
-        * (semiPerm - lengthB) * (semiPerm - lengthC);
+      semiPerimeter = (lengthA + lengthB + lengthC) / 2;
+      double area = semiPerimeter * (semiPerimeter - lengthA)
+        * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
       area = Math.pow(area, 0.5);
-        System.out.println(area);
+      triangleArea = Math.round(area * 10.0) / 10.0;
+      System.out.println(triangleArea);
     }
 
     public void getPerimeter() {
@@ -54,35 +59,57 @@ public class TriangleInfo {
 
     public String getType() {
       double smallerLengths;
+      String triangleType;
       final double lengthASquared = Math.pow(lengthA, 2);
       final double lengthBSquared = Math.pow(lengthB, 2);
       final double lengthCSquared = Math.pow(lengthC, 2);
       if (lengthA < lengthB && lengthC < lengthB) {
         smallerLengths = lengthASquared + lengthCSquared;
+        triangleType = giveType(smallerLengths, lengthBSquared);
       }
       else if (lengthB < lengthA && lengthC < lengthA) {
         smallerLengths = lengthBSquared + lengthCSquared;
+        triangleType = giveType(smallerLengths, lengthASquared);
       }
       else if (lengthA < lengthC && lengthB < lengthC) {
         smallerLengths = lengthASquared + lengthBSquared;
+        triangleType = giveType(smallerLengths, lengthCSquared);
       }
       else {
-
+        triangleType = "Equallateral";
       }
+      return triangleType;
     }
 
     public String giveType(final double combinedLength,
       final double largeLength) {
-        String type;
+        String type = "Equallateral";
         if (combinedLength > largeLength) {
-          type = "Obtuse";
+          type = "Acute";
         }
         else if (combinedLength < largeLength) {
-          type = "Acute";
+          type = "Obtuse";
         }
         else if (combinedLength == largeLength) {
           type = "Right";
         }
         return type;
       }
+
+    public void getHeights(){
+      final double heightA = Math.round((2 * (triangleArea / lengthA))
+        * 100.0) / 100.0;
+      final double heightB = Math.round((2 * (triangleArea / lengthB))
+        * 100.0) / 100.0;
+      final double heightC = Math.round((2 * (triangleArea / lengthC))
+        * 100.0) / 100.0;
+      System.out.println(heightA);
+      System.out.println(heightB);
+      System.out.println(heightC);
+    }
+
+    public void getInscribed(){
+      final double inscribedCircleRadius = triangleArea / semiPerimeter;
+      System.out.println(inscribedCircleRadius);
+    }
 }
