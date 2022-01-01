@@ -28,31 +28,38 @@ public class TriangleInfo {
     /**
     * The rounding used for the angles of the triangle.
     */
-    private double angleRounding = 10.0;
+    private final double angleRounding = 10.0;
 
     /**
     * The rounding used for the calculations (area, perimeter, circumcircle
     * area).
     */
-    private double unitRounding = 100.0;
+    private final double unitRounding = 100.0;
 
     /**
     * The pi value.
     */
-    private double pi = 3.14;
+    private final double pi = 3.14;
 
     /**
-    * The value used to turn radians into degrees (acos gives radians as answer).
+    * The value used to turn radians into degrees (acos gives radians as
+    * answer).
     */
-    private double angles = 180;
+    private final double angles = 180;
 
     /**
     * Value used for rounding radius for inscribed circle.
     */
-    private double radiusRounding = 1000.0;
+    private final double radiusRounding = 1000.0;
 
     /**
+    * The method used to check if the triangle lengths given are valid.
     *
+    * @param sideA the first side length.
+    * @param sideB the second side length.
+    * @param sideC the third side length.
+    *
+    * @return if triangle is valid.
     */
     protected boolean checkTriangle(final double sideA, final double sideB,
       final double sideC) {
@@ -68,7 +75,7 @@ public class TriangleInfo {
     }
 
     /**
-    *
+    * The method used to get the area of the triangle.
     */
     public void getArea() {
         semiPerimeter = (lengthA + lengthB + lengthC) / 2;
@@ -80,7 +87,7 @@ public class TriangleInfo {
     }
 
     /**
-    *
+    * Method used to get perimeter of triangle.
     */
     public void getPerimeter() {
         final double perimeter = lengthA + lengthB + lengthC;
@@ -88,7 +95,7 @@ public class TriangleInfo {
     }
 
     /**
-    *
+    * Method used to get the angles of the triangle.
     */
     public void getAngles() {
         final double lengthASquared = Math.pow(lengthA, 2);
@@ -110,7 +117,9 @@ public class TriangleInfo {
     }
 
     /**
+    * Method used to return the type of the triangle.
     *
+    * @return type of triangle.
     */
     public String getType() {
         double smallerLengths;
@@ -134,7 +143,12 @@ public class TriangleInfo {
     }
 
     /**
+    * Method used to figure out the type of triangle.
     *
+    * @param combinedLength the combined length of 2 sides.
+    * @param largeLength the length of the larger side.
+    *
+    * @return the type of triangle.
     */
     public String giveType(final double combinedLength,
         final double largeLength) {
@@ -180,7 +194,7 @@ public class TriangleInfo {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
         / (4 * triangleArea);
       double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
-      System.out.println(Math.round(circumcircleArea *
-        unitRounding) / unitRounding);
+      System.out.println(Math.round(circumcircleArea
+      * unitRounding) / unitRounding);
     }
 }
