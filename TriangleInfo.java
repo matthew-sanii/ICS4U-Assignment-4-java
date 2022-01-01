@@ -27,4 +27,28 @@ public class TriangleInfo {
       area = Math.pow(area, 0.5);
         System.out.println(area);
     }
+
+    public void getPerimeter() {
+      final double perimeter = lengthA + lengthB + lengthC;
+      System.out.println(perimeter);
+    }
+
+    public void getAngles() {
+      final double lengthASquared = Math.pow(lengthA, 2);
+      final double lengthBSquared = Math.pow(lengthB, 2);
+      final double lengthCSquared = Math.pow(lengthC, 2);
+      double angleA = ((lengthBSquared + lengthCSquared - lengthASquared)
+        / (2 * lengthB * lengthC));
+      double angleB = ((lengthASquared + lengthCSquared - lengthBSquared)
+        / (2 * lengthA * lengthC));
+      angleA = (Math.acos(angleA)) * (180 / 3.14);
+      angleA = Math.round(angleA * 10.0) / 10.0;
+      angleB = (Math.acos(angleB)) * (180 / 3.14);
+      angleB = Math.round(angleB * 10.0) / 10.0;
+      double angleC = 180 - angleA - angleB;
+      angleC = Math.round(angleC * 10.0) / 10.0;
+      System.out.println(angleA);
+      System.out.println(angleB);
+      System.out.println(angleC);
+    }
 }

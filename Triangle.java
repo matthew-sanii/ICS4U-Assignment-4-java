@@ -31,6 +31,8 @@ final class Triangle {
     TriangleInfo triangleInfo = new TriangleInfo();
     if (triangleInfo.checkTriangle(sideA, sideB, sideC)) {
       triangleInfo.getArea();
+      triangleInfo.getPerimeter();
+      triangleInfo.getAngles();
     }
     else {
       System.out.println(".");
