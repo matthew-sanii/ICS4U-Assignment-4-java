@@ -16,7 +16,7 @@ public class TriangleInfo {
     private double lengthC;
 
     /**
-    * The empty double for Semiperimeter
+    * The empty double for Semiperimeter.
     */
     private double semiPerimeter;
 
@@ -52,13 +52,14 @@ public class TriangleInfo {
     private final double quad = 4;
 
     /**
-    * The starting constructor
+    * The starting constructor.
     *
     * @param sideA the first side length.
     * @param sideB the second side length.
     * @param sideC the third side length.
     */
-    public TriangleInfo(final double sideA, final double sideB, final double sideC) {
+    public TriangleInfo(final double sideA,
+      final double sideB, final double sideC) {
       lengthA = sideA;
       lengthB = sideB;
       lengthC = sideC;
@@ -72,8 +73,8 @@ public class TriangleInfo {
     */
     protected boolean checkTriangle() {
         if ((lengthA + lengthB) >= lengthC && (lengthB + lengthC) >= lengthA
-            && (lengthA + lengthC) >= lengthB && semiPerimeter != lengthA
-            && semiPerimeter != lengthB && semiPerimeter != lengthC) {
+            && (lengthA + lengthC) >= lengthB && (semiPerimeter != lengthA
+            || semiPerimeter != lengthB || semiPerimeter != lengthC)) {
             return true;
         } else {
             return false;
@@ -82,21 +83,25 @@ public class TriangleInfo {
 
     /**
     * The method used to get the area of the triangle.
+    *
+    * @return triangle area.
     */
     public double getArea() {
         double area = semiPerimeter * (semiPerimeter - lengthA)
             * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
         area = Math.pow(area, half);
         triangleArea = Math.round(area * rounding) / rounding;
-        return(triangleArea);
+        return triangleArea;
     }
 
     /**
     * Method used to get perimeter of triangle.
+    *
+    * @return perimeter.
     */
     public double getPerimeter() {
         final double perimeter = lengthA + lengthB + lengthC;
-        return(perimeter);
+        return perimeter;
     }
 
     /**
@@ -191,7 +196,7 @@ public class TriangleInfo {
     public double getInscribed() {
       final double inscribedCircleRadius = Math.round((triangleArea
         / semiPerimeter) * rounding) / rounding;
-      return(inscribedCircleRadius);
+      return inscribedCircleRadius;
     }
 
     /**
@@ -203,6 +208,6 @@ public class TriangleInfo {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
         / (quad * triangleArea);
       double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
-      return(Math.round(circumcircleArea * rounding) / rounding);
+      return (Math.round(circumcircleArea * rounding) / rounding);
     }
 }

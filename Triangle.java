@@ -55,8 +55,7 @@ final class Triangle {
           + "length values input are invalid"
           + " (no value can equal semiperimeter.");
       }
-    }
-    catch (NumberFormatException errorCode) {
+    } catch (NumberFormatException errorCode) {
       System.out.println("Error, one or more of side "
         + "length values input are invalid (must be numbers).");
     }
