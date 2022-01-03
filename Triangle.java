@@ -30,15 +30,26 @@ final class Triangle {
     final double sideC = userInput.nextDouble();
     TriangleInfo triangleInfo = new TriangleInfo(sideA, sideB, sideC);
     if (triangleInfo.checkTriangle()) {
-      triangleInfo.getArea();
-      triangleInfo.getPerimeter();
+      System.out.println("The area is " + triangleInfo.getArea()
+      + " units" + "\u00B2.");
+      System.out.println("The perimeter is "
+        + triangleInfo.getPerimeter() + " units.");
+      System.out.println("The angles of the triangle"
+        + " (in order of side lengths given) are:");
       triangleInfo.getAngles();
-      System.out.println(triangleInfo.getType());
+      System.out.println("The triangle is a(n) "
+        + triangleInfo.getType() + " triangle.");
+      System.out.println("The heights of the triangle "
+        + "(in order of side lengths given) are:");
       triangleInfo.getHeights();
-      triangleInfo.getInscribed();
-      triangleInfo.getCircumcircle();
+      System.out.println("The radius of the inscribed circle is "
+        + triangleInfo.getInscribed() + " units.");
+      System.out.println("The area of the circumcircle is "
+        + triangleInfo.getCircumcircle() + " units\u00B2.");
     } else {
-      System.out.println(".");
+      System.out.println("Error, one or more of side "
+        + "length values input are invalid.");
     }
+    System.out.println("\nDone");
   }
 }

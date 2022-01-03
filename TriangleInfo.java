@@ -89,20 +89,20 @@ public class TriangleInfo {
     /**
     * The method used to get the area of the triangle.
     */
-    public void getArea() {
+    public double getArea() {
         double area = semiPerimeter * (semiPerimeter - lengthA)
             * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
         area = Math.pow(area, half);
         triangleArea = Math.round(area * unitRounding) / unitRounding;
-        System.out.println(triangleArea);
+        return(triangleArea);
     }
 
     /**
     * Method used to get perimeter of triangle.
     */
-    public void getPerimeter() {
+    public double getPerimeter() {
         final double perimeter = lengthA + lengthB + lengthC;
-        System.out.println(perimeter);
+        return(perimeter);
     }
 
     /**
@@ -122,9 +122,9 @@ public class TriangleInfo {
         angleB = Math.round(angleB * angleRounding) / angleRounding;
         double angleC = angles - angleA - angleB;
         angleC = Math.round(angleC * angleRounding) / angleRounding;
-        System.out.println(angleA);
-        System.out.println(angleB);
-        System.out.println(angleC);
+        System.out.println(angleA + "\u00B0");
+        System.out.println(angleB + "\u00B0");
+        System.out.println(angleC + "\u00B0");
     }
 
     /**
@@ -184,28 +184,31 @@ public class TriangleInfo {
         * unitRounding) / unitRounding;
       final double heightC = Math.round((2 * (triangleArea / lengthC))
         * unitRounding) / unitRounding;
-      System.out.println(heightA);
-      System.out.println(heightB);
-      System.out.println(heightC);
+      System.out.println(heightA + " units.");
+      System.out.println(heightB + " units.");
+      System.out.println(heightC + " units.");
     }
 
     /**
     * The method to get the inscribed circle's radius.
+    *
+    * @return inscribed circle radius.
     */
-    public void getInscribed() {
+    public double getInscribed() {
       final double inscribedCircleRadius = Math.round((triangleArea
         / semiPerimeter) * unitRounding) / unitRounding;
-      System.out.println(inscribedCircleRadius);
+      return(inscribedCircleRadius);
     }
 
     /**
     * The method to get the area of the circumcircle.
+    *
+    * @return circumcircle area.
     */
-    public void getCircumcircle() {
+    public double getCircumcircle() {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
         / (quad * triangleArea);
       double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
-      System.out.println(Math.round(circumcircleArea
-      * unitRounding) / unitRounding);
+      return(Math.round(circumcircleArea * unitRounding) / unitRounding);
     }
 }
