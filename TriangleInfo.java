@@ -1,27 +1,29 @@
 public class TriangleInfo {
 
     /**
-    * The starting constructor
-    *
-    * @param sideA the first side length.
-    * @param sideB the second side length.
-    * @param sideC the third side length.
+    * The empty double for side length A.
     */
-    public TriangleInfo(final double sideA, final double sideB, final double sideC) {
-      private double lengthA = sideA;
-      private double lengthB = sideB;
-      private double lengthC = sideC;
-    }
+    private double lengthA;
+
+    /**
+    * The empty double for side length B.
+    */
+    private double lengthB;
+
+    /**
+    * The empty double for side length C.
+    */
+    private double lengthC;
+
+    /**
+    * The empty double for Semiperimeter
+    */
+    private double semiPerimeter;
 
     /**
     * The empty double for the triangle area.
     */
     private double triangleArea;
-
-    /**
-    * The empty double for the triangle's semiperimeter.
-    */
-    private double semiPerimeter;
 
     /**
     * The rounding used for the angles of the triangle.
@@ -46,11 +48,6 @@ public class TriangleInfo {
     private final double angles = 180;
 
     /**
-    * Value used for rounding radius for inscribed circle.
-    */
-    private final double radiusRounding = 1000.0;
-
-    /**
     * Value used in finding square root.
     */
     private final double half = 0.5;
@@ -61,13 +58,28 @@ public class TriangleInfo {
     private final double quad = 4;
 
     /**
+    * The starting constructor
+    *
+    * @param sideA the first side length.
+    * @param sideB the second side length.
+    * @param sideC the third side length.
+    */
+    public TriangleInfo(final double sideA, final double sideB, final double sideC) {
+      lengthA = sideA;
+      lengthB = sideB;
+      lengthC = sideC;
+      semiPerimeter = (lengthA + lengthB + lengthC) / 2;
+    }
+
+    /**
     * The method used to check if the triangle lengths given are valid.
     *
     * @return if triangle is valid.
     */
     protected boolean checkTriangle() {
         if ((lengthA + lengthB) >= lengthC && (lengthB + lengthC) >= lengthA
-            && (lengthA + lengthC) >= lengthB) {
+            && (lengthA + lengthC) >= lengthB && semiPerimeter != lengthA
+            && semiPerimeter != lengthB && semiPerimeter != lengthC) {
             return true;
         } else {
             return false;
@@ -78,7 +90,6 @@ public class TriangleInfo {
     * The method used to get the area of the triangle.
     */
     public void getArea() {
-        semiPerimeter = (lengthA + lengthB + lengthC) / 2;
         double area = semiPerimeter * (semiPerimeter - lengthA)
             * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
         area = Math.pow(area, half);
@@ -183,7 +194,7 @@ public class TriangleInfo {
     */
     public void getInscribed() {
       final double inscribedCircleRadius = Math.round((triangleArea
-        / semiPerimeter) * radiusRounding) / radiusRounding;
+        / semiPerimeter) * unitRounding) / unitRounding;
       System.out.println(inscribedCircleRadius);
     }
 

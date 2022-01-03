@@ -28,8 +28,8 @@ final class Triangle {
     final double sideB = userInput.nextDouble();
     System.out.println("Input the third triangle side length: ");
     final double sideC = userInput.nextDouble();
-    TriangleInfo triangleInfo = new TriangleInfo();
-    if (triangleInfo.checkTriangle(sideA, sideB, sideC)) {
+    TriangleInfo triangleInfo = new TriangleInfo(sideA, sideB, sideC);
+    if (triangleInfo.checkTriangle()) {
       triangleInfo.getArea();
       triangleInfo.getPerimeter();
       triangleInfo.getAngles();
