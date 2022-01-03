@@ -28,18 +28,12 @@ public class TriangleInfo {
     /**
     * The rounding used for the angles of the triangle.
     */
-    private final double angleRounding = 10.0;
-
-    /**
-    * The rounding used for the calculations (area, perimeter, circumcircle
-    * area).
-    */
-    private final double unitRounding = 100.0;
+    private final double rounding = 100.0;
 
     /**
     * The pi value.
     */
-    private final double pi = 3.14;
+    private final double pi = 3.14159265359;
 
     /**
     * The value used to turn radians into degrees (acos gives radians as
@@ -93,7 +87,7 @@ public class TriangleInfo {
         double area = semiPerimeter * (semiPerimeter - lengthA)
             * (semiPerimeter - lengthB) * (semiPerimeter - lengthC);
         area = Math.pow(area, half);
-        triangleArea = Math.round(area * unitRounding) / unitRounding;
+        triangleArea = Math.round(area * rounding) / rounding;
         return(triangleArea);
     }
 
@@ -117,11 +111,11 @@ public class TriangleInfo {
         double angleB = ((lengthASquared + lengthCSquared - lengthBSquared)
           / (2 * lengthA * lengthC));
         angleA = (Math.acos(angleA)) * (angles / pi);
-        angleA = Math.round(angleA * angleRounding) / angleRounding;
+        angleA = Math.round(angleA * rounding) / rounding;
         angleB = (Math.acos(angleB)) * (angles / pi);
-        angleB = Math.round(angleB * angleRounding) / angleRounding;
+        angleB = Math.round(angleB * rounding) / rounding;
         double angleC = angles - angleA - angleB;
-        angleC = Math.round(angleC * angleRounding) / angleRounding;
+        angleC = Math.round(angleC * rounding) / rounding;
         System.out.println(angleA + "\u00B0");
         System.out.println(angleB + "\u00B0");
         System.out.println(angleC + "\u00B0");
@@ -134,21 +128,21 @@ public class TriangleInfo {
     */
     public String getType() {
         double smallerLengths;
-        String triangleType;
+        String triangleType = "Equilateral";
         final double lengthASquared = Math.pow(lengthA, 2);
         final double lengthBSquared = Math.pow(lengthB, 2);
         final double lengthCSquared = Math.pow(lengthC, 2);
-        if (lengthA < lengthB && lengthC < lengthB) {
+        if (lengthA == lengthB && lengthB == lengthC) {
+          triangleType = "Equilateral";
+        } else if (lengthA <= lengthB && lengthC <= lengthB) {
           smallerLengths = lengthASquared + lengthCSquared;
           triangleType = giveType(smallerLengths, lengthBSquared);
-        } else if (lengthB < lengthA && lengthC < lengthA) {
-            smallerLengths = lengthBSquared + lengthCSquared;
-            triangleType = giveType(smallerLengths, lengthASquared);
-        } else if (lengthA < lengthC && lengthB < lengthC) {
-            smallerLengths = lengthASquared + lengthBSquared;
-            triangleType = giveType(smallerLengths, lengthCSquared);
-        } else {
-            triangleType = "Equallateral";
+        } else if (lengthB <= lengthA && lengthC <= lengthA) {
+          smallerLengths = lengthBSquared + lengthCSquared;
+          triangleType = giveType(smallerLengths, lengthASquared);
+        } else if (lengthA <= lengthC && lengthB <= lengthC) {
+          smallerLengths = lengthASquared + lengthBSquared;
+          triangleType = giveType(smallerLengths, lengthCSquared);
         }
         return triangleType;
     }
@@ -179,11 +173,11 @@ public class TriangleInfo {
     */
     public void getHeights() {
       final double heightA = Math.round((2 * (triangleArea / lengthA))
-        * unitRounding) / unitRounding;
+        * rounding) / rounding;
       final double heightB = Math.round((2 * (triangleArea / lengthB))
-        * unitRounding) / unitRounding;
+        * rounding) / rounding;
       final double heightC = Math.round((2 * (triangleArea / lengthC))
-        * unitRounding) / unitRounding;
+        * rounding) / rounding;
       System.out.println(heightA + " units.");
       System.out.println(heightB + " units.");
       System.out.println(heightC + " units.");
@@ -196,7 +190,7 @@ public class TriangleInfo {
     */
     public double getInscribed() {
       final double inscribedCircleRadius = Math.round((triangleArea
-        / semiPerimeter) * unitRounding) / unitRounding;
+        / semiPerimeter) * rounding) / rounding;
       return(inscribedCircleRadius);
     }
 
@@ -209,6 +203,6 @@ public class TriangleInfo {
       double circumcircleRadius = (lengthA * lengthB * lengthC)
         / (quad * triangleArea);
       double circumcircleArea = pi * Math.pow(circumcircleRadius, 2);
-      return(Math.round(circumcircleArea * unitRounding) / unitRounding);
+      return(Math.round(circumcircleArea * rounding) / rounding);
     }
 }
