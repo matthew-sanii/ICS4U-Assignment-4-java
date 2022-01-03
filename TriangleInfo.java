@@ -72,13 +72,11 @@ public class TriangleInfo {
     * @return if triangle is valid.
     */
     protected boolean checkTriangle() {
-        if ((lengthA + lengthB) >= lengthC && (lengthB + lengthC) >= lengthA
-            && (lengthA + lengthC) >= lengthB && (semiPerimeter != lengthA
-            || semiPerimeter != lengthB || semiPerimeter != lengthC)) {
-            return true;
-        } else {
-            return false;
-        }
+        return ((lengthA + lengthB) >= lengthC
+          && (lengthB + lengthC) >= lengthA
+          && (lengthA + lengthC) >= lengthB
+          && (semiPerimeter != lengthA || semiPerimeter != lengthB
+          || semiPerimeter != lengthC));
     }
 
     /**
